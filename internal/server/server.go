@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/Yandex-Practicum/go1fl-sprint6-final/internal/handlers"
 )
 
 // Настройки HTTP-сервера, числа взяты из задания.
@@ -26,7 +28,7 @@ type APIServer struct {
 // Логгер попадает в поле ErrorLog, библиотека пишет в логгер сообщения об ошибках.
 func NewAPIServer(logger *log.Logger) *APIServer {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", Handle)
+	mux.HandleFunc("/", handlers.Handle)
 	httpServer := &http.Server{
 		Addr:         portAddress,
 		Handler:      mux,
@@ -39,9 +41,4 @@ func NewAPIServer(logger *log.Logger) *APIServer {
 		Logger: logger,
 		Server: httpServer,
 	}
-}
-
-// Handle отдаёт один и тот же текст на любой запрос.
-func Handle(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("сервер жив"))
 }
