@@ -28,7 +28,8 @@ type APIServer struct {
 // Логгер попадает в поле ErrorLog, библиотека пишет в логгер сообщения об ошибках.
 func NewAPIServer(logger *log.Logger) *APIServer {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", handlers.Handle)
+	mux.HandleFunc("/", handlers.ServeIndex)
+	mux.HandleFunc("/upload", handlers.UploadHandler)
 	httpServer := &http.Server{
 		Addr:         portAddress,
 		Handler:      mux,
