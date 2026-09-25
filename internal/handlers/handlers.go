@@ -16,6 +16,9 @@ func ServeIndex(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
 }
 
+// UploadHandler обрабатывает запросы на эндпоинте /upload.
+// Функция извлекает файл из поля формы "myFile", определяет тип содержимого (текст или код Морзе) и конвертирует его.
+// Результат записывается в локальный файл на сервере и отправляется в виде текстового ответа клиенту.
 func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	file, hdr, err := r.FormFile("myFile")
 	if err != nil {
