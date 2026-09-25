@@ -1,3 +1,5 @@
+// Package handlers содержит обработчики которые принимают запросы и производят ответы.
+
 package handlers
 
 import (
@@ -6,14 +8,15 @@ import (
 	"net/http"
 )
 
+// ServeIndex отправляет файл index.html клиенту.
 func ServeIndex(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
 }
 
 func UploadHandler(w http.ResponseWriter, r *http.Request) {
-	file, _, err := r.FormFile("myFile")
+	file, _, err := r.FormFile("myFile") //hdr
 	if err != nil {
-		http.Error(w, "неверный формат файла", http.StatusBadRequest)
+		http.Error(w, "неверный формат файла", http.StatusInternalServerError)
 		log.Print(err)
 		return
 	}
