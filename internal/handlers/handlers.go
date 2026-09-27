@@ -1,14 +1,15 @@
-// Package handlers содержит обработчики которые принимают запросы и производят ответы.
+// Package handlers содержит обработчики, которые принимают запросы и производят ответы.
 package handlers
 
 import (
-	"github.com/Yandex-Practicum/go1fl-sprint6-final/internal/service"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"time"
+
+	"github.com/Yandex-Practicum/go1fl-sprint6-final/internal/service"
 )
 
 // ServeIndex отправляет файл index.html клиенту.
